@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_train_app/station_list.dart';
 
 class SearchButton extends StatelessWidget {
   @override
@@ -14,7 +15,17 @@ class SearchButton extends StatelessWidget {
             borderRadius: BorderRadiusGeometry.circular(20),
           ),
         ),
-        onPressed: () {},
+        //TODO station_list 앱바 타이틀에 selectStatus 전달 창구
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return StationList();
+              },
+            ),
+          );
+        },
         // 텍스트 및 스타일 설정(색상, 크기, 두께)
         child: Text(
           "좌석 선택",

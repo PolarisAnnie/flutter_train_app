@@ -1,22 +1,49 @@
+import 'package:flutter/material.dart';
 
-/*
-context?
- BuildContext에 있는 객체로 위치가 어디에 있는지 알려줌. 부모 데이터들을 
- 가지고 오고 사용할 수 있게 도와줌. (ex. Theme, Navigator, ... )
- 위젯 트리를 그려주는데 이게 트리 내에서 어디에 위치하는지 찾을 수 있는 역할
- => Context는 **"현재 위젯의 위치 정보"**를 담고 있는 특별한 객체
- => 플러터에서 자동으로 주입해주는 파라미터
-*/
+class StationList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("출발역")),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            stationItem("수서"),
+            stationItem("동탄"),
+            stationItem("평택지제"),
+            stationItem("천안아산"),
+            stationItem("오송"),
+            stationItem("대전"),
+            stationItem("김천구미"),
+            stationItem("동대구"),
+            stationItem("경주"),
+            stationItem("울산"),
+            stationItem("부산"),
+          ],
+        ),
+      ),
+    );
+  }
 
-
-/*
-spacer() : 남은 영역을 모두 사용하고 싶을 때, 반응형 UI할 때 많이 사용함
-Expanded : SizedBox랑 비슷한 성격인데 안에 자녀 요소가 들어갈 수 있음
- ㄴ 텍스트가 길어지면서 overflow가 될 수 있을 때 expanded를 사용하면
- 남은 영역 이상을 뛰어넘지 못하게 설정할 수 있음
-==> 둘은 반드시 row 또는 column에서만 사용 가능
-==> flex로 비율 설정
-
-SizedBox : 자녀 위젯의 크기만 지정하고 싶을 때
-padding : 내용물 주변 여백(카드, 컨테이너 내부) 
-*/
+  //반복되는 역 이름 부분 함수화
+  Container stationItem(stationName) {
+    return Container(
+      height: 50,
+      width: double.infinity,
+      //컨테이너 하단 색상 부여하는 방법
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(color: Colors.grey[300]!)),
+      ),
+      //텍스트가 컨테이너의 가운데에 오도록 패딩 적용
+      child: Padding(
+        padding: const EdgeInsets.all(12.5),
+        // 텍스트 스타일 설정
+        child: Text(
+          stationName,
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+  }
+}
