@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/home_page/search_button.dart';
-import 'package:flutter_train_app/home_page/select_place.dart';
+import 'package:flutter_train_app/home_page/select_station.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           //body 내 위젯 세로 가운데 정렬
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [SelectPlace(), SizedBox(height: 20), SearchButton()],
+          children: [SelectStation(), SizedBox(height: 20), SearchButton()],
         ),
       ),
     );
