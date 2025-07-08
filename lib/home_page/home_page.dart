@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/home_page/search_button.dart';
 import 'package:flutter_train_app/home_page/select_station.dart';
-import 'package:flutter_train_app/theme.dart';
 
 class HomePage extends StatelessWidget {
   @override
