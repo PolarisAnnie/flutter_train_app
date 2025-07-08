@@ -9,12 +9,12 @@ class SearchButton extends StatelessWidget {
       height: 50,
       child: ElevatedButton(
         // 버튼 스타일 설정(색상, 모서리 둥글기)
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.purple,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadiusGeometry.circular(20),
-          ),
-        ),
+        // style: ElevatedButton.styleFrom(
+        //   backgroundColor: Colors.purple,
+        //   shape: RoundedRectangleBorder(
+        //     borderRadius: BorderRadiusGeometry.circular(20),
+        //   ),
+        // ),
         //TODO station_list 앱바 타이틀에 selectStatus 전달 창구
         onPressed: () {
           Navigator.push(
