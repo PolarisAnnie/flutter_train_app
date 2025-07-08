@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_train_app/seat_page/seat_page.dart';
 import 'package:flutter_train_app/station_list.dart';
 
 class SearchButton extends StatelessWidget {
@@ -21,7 +22,7 @@ class SearchButton extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return StationList();
+                return SeatPage();
               },
             ),
           );
