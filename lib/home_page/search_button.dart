@@ -8,14 +8,8 @@ class SearchButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       height: 50,
+      //버튼 Theme 적용
       child: ElevatedButton(
-        // 버튼 스타일 설정(색상, 모서리 둥글기)
-        // style: ElevatedButton.styleFrom(
-        //   backgroundColor: Colors.purple,
-        //   shape: RoundedRectangleBorder(
-        //     borderRadius: BorderRadiusGeometry.circular(20),
-        //   ),
-        // ),
         //TODO station_list 앱바 타이틀에 selectStatus 전달 창구
         onPressed: () {
           Navigator.push(
@@ -27,15 +21,8 @@ class SearchButton extends StatelessWidget {
             ),
           );
         },
-        // 텍스트 및 스타일 설정(색상, 크기, 두께)
-        child: Text(
-          "좌석 선택",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        // 버튼 Theme 적용
+        child: Text("좌석 선택"),
       ),
     );
   }

@@ -13,6 +13,7 @@ class SeatStation extends StatelessWidget {
     );
   }
 
+  // 반복되는 부분 함수화
   Text selectedStation(String station) {
     return Text(
       station,
