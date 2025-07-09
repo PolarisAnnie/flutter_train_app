@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 class SeatLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         selectStatus("선택됨", Colors.purple),
         SizedBox(width: 20),
-        selectStatus("선택안됨", Colors.grey[300]!),
+        selectStatus("선택안됨", isDark ? Colors.white38 : Colors.grey[300]!),
       ],
     );
   }

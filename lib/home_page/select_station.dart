@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 class SelectStation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       // 출발역, 도착역 감싸고 있는 박스 스타일 적용
       height: 200,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDark ? Colors.white24 : Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(

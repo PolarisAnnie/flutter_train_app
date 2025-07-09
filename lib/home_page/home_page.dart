@@ -5,9 +5,10 @@ import 'package:flutter_train_app/home_page/select_station.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       //body background 색상
-      backgroundColor: Colors.grey[200],
+      backgroundColor: isDark ? Colors.black : Colors.grey[200],
       appBar: AppBar(title: Text("기차 예매")),
       // Scaffold body padding 20
       body: Padding(
