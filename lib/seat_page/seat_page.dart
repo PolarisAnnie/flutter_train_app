@@ -8,11 +8,11 @@ import 'package:flutter_train_app/seat_page/seat_staion.dart';
 class SeatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Scaffold(
-        appBar: AppBar(title: Text("좌석 선택")),
-        body: Column(
+    return Scaffold(
+      appBar: AppBar(title: Text("좌석 선택")),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
           children: [
             SeatStation(),
             SeatLabel(),

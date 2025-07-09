@@ -6,7 +6,7 @@ class SeatReservationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.only(top: 0, bottom: 30, left: 20, right: 20),
       child: SizedBox(
         width: double.infinity,
         height: 50,
