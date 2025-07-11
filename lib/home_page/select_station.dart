@@ -5,7 +5,6 @@ import 'home_page.dart';
 TrainReservation? reservation;
 String departure = "선택";
 String arrival = "선택";
-bool isDeparture = true;
 
 class SelectStation extends StatelessWidget {
   @override
@@ -22,14 +21,14 @@ class SelectStation extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          StationSelector(departure),
+          StationSelector(true, departure),
           //세로선 스타일 적용
           Container(
             width: 2,
             height: 50,
             decoration: BoxDecoration(color: Colors.grey[400]),
           ),
-          StationSelector(arrival),
+          StationSelector(false, arrival),
         ],
       ),
     );
@@ -37,15 +36,16 @@ class SelectStation extends StatelessWidget {
 }
 
 class StationSelector extends StatelessWidget {
-  StationSelector(this.status);
-  String status;
+  StationSelector(this.isDeparture, this.stationName);
+  bool isDeparture;
+  String stationName;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        stationStatus(status),
+        stationStatus(isDeparture),
         TextButton(
           onPressed: () {
             Navigator.push(
@@ -58,7 +58,7 @@ class StationSelector extends StatelessWidget {
             );
           },
           child: Text(
-            isDeparture ? departure : arrival,
+            stationName,
             style: TextStyle(fontSize: 40, color: Colors.black),
           ),
         ),
@@ -67,10 +67,9 @@ class StationSelector extends StatelessWidget {
   }
 
   // 중복되는 부분 함수화
-  Text stationStatus(String text) {
-    isDeparture ? text = "출발역" : "도착역";
+  Text stationStatus(bool isDeparture) {
     return Text(
-      text,
+      isDeparture ? "출발역" : "도착역",
       style: TextStyle(
         fontSize: 16,
         color: Colors.grey,
