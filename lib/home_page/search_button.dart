@@ -1,29 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/seat_page/seat_page.dart';
-import 'package:flutter_train_app/station_list.dart';
+import 'select_station.dart';
+
+// 두가지 역이 모두 선택되었는지 확인하는 함수
+bool isChecked() {
+  return (departure != "선택" && arrival != "선택");
+}
 
 class SearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 50,
-      //버튼 Theme 적용
-      child: ElevatedButton(
-        //TODO station_list 앱바 타이틀에 selectStatus 전달 창구
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return SeatPage();
-              },
-            ),
-          );
-        },
-        // 버튼 Theme 적용
-        child: Text("좌석 선택"),
-      ),
-    );
+    if (isChecked == true) {
+      return SizedBox(
+        width: double.infinity,
+        height: 50,
+        //버튼 Theme 적용
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return SeatPage();
+                },
+              ),
+            );
+          },
+          // 버튼 Theme 적용
+          child: Text("좌석 선택"),
+        ),
+      );
+    } else {
+      return SizedBox(
+        width: double.infinity,
+        height: 50,
+        child: ElevatedButton(
+          onPressed: () {},
+          child: Text("좌석 선택"),
+          style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
+        ),
+      );
+    }
   }
 }
