@@ -52,7 +52,7 @@ class StationSelector extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return StationList();
+                  return StationList(isDeparture, stationName);
                 },
               ),
             );
