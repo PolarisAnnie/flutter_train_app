@@ -16,7 +16,6 @@ class TrainReservation {
 // 출발역, 도착역 정보가 모두 들어가 있는지 확인하는 변수 추가
 bool isSlectedStation = false;
 
-// StatefulWidget으로 변경
 class HomePage extends StatelessWidget {
   TrainReservation? reservation;
   @override

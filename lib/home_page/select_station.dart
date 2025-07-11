@@ -12,6 +12,16 @@ class SelectStation extends StatefulWidget {
 }
 
 class _SelectStationState extends State<SelectStation> {
+  void updateStation(bool isDeparture, String stationName) {
+    setState(() {
+      if (isDeparture) {
+        departure = stationName;
+      } else {
+        arrival = stationName;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
@@ -26,14 +36,14 @@ class _SelectStationState extends State<SelectStation> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          StationSelector(true, departure),
+          StationSelector(true, departure, updateStation),
           //세로선 스타일 적용
           Container(
             width: 2,
             height: 50,
             decoration: BoxDecoration(color: Colors.grey[400]),
           ),
-          StationSelector(false, arrival),
+          StationSelector(false, arrival, updateStation),
         ],
       ),
     );
@@ -41,9 +51,10 @@ class _SelectStationState extends State<SelectStation> {
 }
 
 class StationSelector extends StatelessWidget {
-  StationSelector(this.isDeparture, this.stationName);
+  StationSelector(this.isDeparture, this.stationName, this.onStationSelected);
   bool isDeparture;
   String stationName;
+  Function(bool, String) onStationSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +63,8 @@ class StationSelector extends StatelessWidget {
       children: [
         stationStatus(isDeparture),
         TextButton(
-          onPressed: () {
-            Navigator.push(
+          onPressed: () async {
+            final result = await Navigator.push<String>(
               context,
               MaterialPageRoute(
                 builder: (context) {
@@ -61,6 +72,10 @@ class StationSelector extends StatelessWidget {
                 },
               ),
             );
+
+            if (result != null) {
+              onStationSelected(isDeparture, result);
+            }
           },
           child: Text(
             stationName,
