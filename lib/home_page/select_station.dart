@@ -6,7 +6,12 @@ TrainReservation? reservation;
 String departure = "선택";
 String arrival = "선택";
 
-class SelectStation extends StatelessWidget {
+class SelectStation extends StatefulWidget {
+  @override
+  State<SelectStation> createState() => _SelectStationState();
+}
+
+class _SelectStationState extends State<SelectStation> {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;

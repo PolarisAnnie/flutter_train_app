@@ -17,11 +17,7 @@ class TrainReservation {
 bool isSlectedStation = false;
 
 // StatefulWidget으로 변경
-class HomePage extends StatefulWidget {
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   TrainReservation? reservation;
   @override
   Widget build(BuildContext context) {
