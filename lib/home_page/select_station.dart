@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_train_app/station_list.dart';
+import 'home_page.dart';
+
+TrainReservation? reservation;
+String departure = "선택";
+String arrival = "선택";
+bool isDeparture = true;
 
 class SelectStation extends StatelessWidget {
   @override
@@ -15,14 +22,14 @@ class SelectStation extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          StationSelector("출발역"),
+          StationSelector(departure),
           //세로선 스타일 적용
           Container(
             width: 2,
             height: 50,
             decoration: BoxDecoration(color: Colors.grey[400]),
           ),
-          StationSelector("도착역"),
+          StationSelector(arrival),
         ],
       ),
     );
@@ -39,13 +46,29 @@ class StationSelector extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         stationStatus(status),
-        Text("선택", style: TextStyle(fontSize: 40)),
+        TextButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return StationList();
+                },
+              ),
+            );
+          },
+          child: Text(
+            isDeparture ? departure : arrival,
+            style: TextStyle(fontSize: 40, color: Colors.black),
+          ),
+        ),
       ],
     );
   }
 
   // 중복되는 부분 함수화
   Text stationStatus(String text) {
+    isDeparture ? text = "출발역" : "도착역";
     return Text(
       text,
       style: TextStyle(
