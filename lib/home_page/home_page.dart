@@ -13,11 +13,26 @@ class TrainReservation {
   TrainReservation(this.departure, this.arrival, this.seatRow, this.seatCol);
 }
 
-// 출발역, 도착역 정보가 모두 들어가 있는지 확인하는 변수 추가
-bool isSlectedStation = false;
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
-class HomePage extends StatelessWidget {
+class _HomePageState extends State<HomePage> {
   TrainReservation? reservation;
+  String departure = "선택";
+  String arrival = "선택";
+
+  void updateStation(bool isDeparture, String stationName) {
+    setState(() {
+      if (isDeparture) {
+        departure = stationName;
+      } else {
+        arrival = stationName;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
@@ -31,7 +46,15 @@ class HomePage extends StatelessWidget {
         child: Column(
           //body 내 위젯 세로 가운데 정렬
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [SelectStation(), SizedBox(height: 20), SearchButton()],
+          children: [
+            SelectStation(
+              departure: departure,
+              arrival: arrival,
+              onUpdate: updateStation,
+            ),
+            SizedBox(height: 20),
+            SearchButton(departure: departure, arrival: arrival),
+          ],
         ),
       ),
     );

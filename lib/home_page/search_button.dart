@@ -3,6 +3,10 @@ import 'package:flutter_train_app/seat_page/seat_page.dart';
 import 'select_station.dart';
 
 class SearchButton extends StatelessWidget {
+  String departure;
+  String arrival;
+  SearchButton({required this.departure, required this.arrival});
+
   // 두가지 역이 모두 선택되었는지 확인하는 함수
   bool isChecked() {
     return departure != "선택" && arrival != "선택";
@@ -10,7 +14,7 @@ class SearchButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isChecked == true) {
+    if (isChecked()) {
       return SizedBox(
         width: double.infinity,
         height: 50,

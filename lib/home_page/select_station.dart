@@ -2,25 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_train_app/station_list.dart';
 import 'home_page.dart';
 
-TrainReservation? reservation;
-String departure = "선택";
-String arrival = "선택";
+class SelectStation extends StatelessWidget {
+  String departure;
+  String arrival;
+  Function(bool, String) onUpdate;
 
-class SelectStation extends StatefulWidget {
-  @override
-  State<SelectStation> createState() => _SelectStationState();
-}
-
-class _SelectStationState extends State<SelectStation> {
-  void updateStation(bool isDeparture, String stationName) {
-    setState(() {
-      if (isDeparture) {
-        departure = stationName;
-      } else {
-        arrival = stationName;
-      }
-    });
-  }
+  SelectStation({
+    required this.departure,
+    required this.arrival,
+    required this.onUpdate,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +27,14 @@ class _SelectStationState extends State<SelectStation> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          StationSelector(true, departure, updateStation),
+          StationSelector(true, departure, onUpdate),
           //세로선 스타일 적용
           Container(
             width: 2,
             height: 50,
             decoration: BoxDecoration(color: Colors.grey[400]),
           ),
-          StationSelector(false, arrival, updateStation),
+          StationSelector(false, arrival, onUpdate),
         ],
       ),
     );
