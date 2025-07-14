@@ -21,7 +21,7 @@ class SeatReservationButton extends StatelessWidget {
               context: context,
               builder: (context) => CupertinoAlertDialog(
                 title: Text("예매 하시겠습니까?"),
-                content: Text("좌석 : $selectedCol-$selectedRow"),
+                content: Text("좌석 : $selectedRow-$selectedCol"),
                 actions: [
                   CupertinoDialogAction(
                     onPressed: () {

@@ -19,7 +19,6 @@ class _SeatPageState extends State<SeatPage> {
   int? selectedCol;
 
   void onSeatSelected(String row, int col) {
-    print("좌석 선택됨: $row$col");
     setState(() {
       selectedRow = row;
       selectedCol = col;

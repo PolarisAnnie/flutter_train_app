@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_train_app/seat_page/seat_page.dart';
 import 'seat_index.dart';
 
 class SelectSeatBox extends StatefulWidget {
+  String? selectedRow;
+  int? selectedCol;
   Function(String, int) onSeatSelected;
-  SelectSeatBox(this.onSeatSelected);
+  SelectSeatBox(this.selectedRow, this.selectedCol, this.onSeatSelected);
 
   @override
   State<SelectSeatBox> createState() => _SelectSeatBoxState();
@@ -74,14 +77,16 @@ class _SelectSeatBoxState extends State<SelectSeatBox> {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: GestureDetector(
         onTap: () {
-          print("클릭된 좌석: $rowIndex$colNum");
           onSeatSelected(rowIndex, colNum);
         },
         child: Container(
           width: 50,
           height: 50,
           decoration: BoxDecoration(
-            color: isDark ? Colors.white38 : Colors.grey[300]!,
+            color:
+                (widget.selectedRow == rowIndex && widget.selectedCol == colNum)
+                ? Colors.purple
+                : (isDark ? Colors.white38 : Colors.grey[300]!),
             borderRadius: BorderRadius.circular(8),
           ),
         ),

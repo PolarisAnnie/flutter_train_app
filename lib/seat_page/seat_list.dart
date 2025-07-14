@@ -13,7 +13,10 @@ class SeatList extends StatelessWidget {
     return Expanded(
       child: ListView(
         padding: EdgeInsets.symmetric(vertical: 20),
-        children: [SeatRowIndex(), SelectSeatBox(onSeatSelected)],
+        children: [
+          SeatRowIndex(),
+          SelectSeatBox(selectedRow, selectedCol, onSeatSelected),
+        ],
       ),
     );
   }
