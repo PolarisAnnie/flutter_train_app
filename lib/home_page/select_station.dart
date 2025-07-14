@@ -48,6 +48,7 @@ class StationSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -69,7 +70,10 @@ class StationSelector extends StatelessWidget {
           },
           child: Text(
             stationName,
-            style: TextStyle(fontSize: 40, color: Colors.black),
+            style: TextStyle(
+              fontSize: 40,
+              color: isDark ? Colors.white : Colors.black,
+            ),
           ),
         ),
       ],
