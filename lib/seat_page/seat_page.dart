@@ -10,14 +10,22 @@ class SeatPage extends StatefulWidget {
   final String arrival;
   SeatPage(this.departure, this.arrival);
 
-  String? selectedRow;
-  int? selectedCol;
-
   @override
   State<SeatPage> createState() => _SeatPageState();
 }
 
 class _SeatPageState extends State<SeatPage> {
+  String? selectedRow;
+  int? selectedCol;
+
+  void onSeatSelected(String row, int col) {
+    print("좌석 선택됨: $row$col");
+    setState(() {
+      selectedRow = row;
+      selectedCol = col;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,8 +36,8 @@ class _SeatPageState extends State<SeatPage> {
           children: [
             SeatStation(widget.departure, widget.arrival),
             SeatLabel(),
-            SeatList(widget.selectedRow, widget.selectedCol),
-            SeatReservationButton(widget.selectedRow, widget.selectedCol),
+            SeatList(selectedRow, selectedCol, onSeatSelected),
+            SeatReservationButton(selectedRow, selectedCol),
           ],
         ),
       ),
