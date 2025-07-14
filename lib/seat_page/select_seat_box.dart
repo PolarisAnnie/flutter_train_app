@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_train_app/seat_page/seat_page.dart';
 import 'seat_index.dart';
 
 class SelectSeatBox extends StatefulWidget {
@@ -40,27 +39,8 @@ class _SelectSeatBoxState extends State<SelectSeatBox> {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Column(
       children: [
-        seat(context, rowIndex, 1, widget.onSeatSelected),
-        seat(context, rowIndex, 2, widget.onSeatSelected),
-        seat(context, rowIndex, 3, widget.onSeatSelected),
-        seat(context, rowIndex, 4, widget.onSeatSelected),
-        seat(context, rowIndex, 5, widget.onSeatSelected),
-        seat(context, rowIndex, 6, widget.onSeatSelected),
-        seat(context, rowIndex, 7, widget.onSeatSelected),
-        seat(context, rowIndex, 8, widget.onSeatSelected),
-        seat(context, rowIndex, 9, widget.onSeatSelected),
-        seat(context, rowIndex, 10, widget.onSeatSelected),
-        seat(context, rowIndex, 11, widget.onSeatSelected),
-        seat(context, rowIndex, 12, widget.onSeatSelected),
-        seat(context, rowIndex, 13, widget.onSeatSelected),
-        seat(context, rowIndex, 14, widget.onSeatSelected),
-        seat(context, rowIndex, 15, widget.onSeatSelected),
-        seat(context, rowIndex, 16, widget.onSeatSelected),
-        seat(context, rowIndex, 17, widget.onSeatSelected),
-        seat(context, rowIndex, 18, widget.onSeatSelected),
-        seat(context, rowIndex, 19, widget.onSeatSelected),
-        seat(context, rowIndex, 20, widget.onSeatSelected),
-
+        for (int i = 1; i <= 20; i++)
+          seat(context, rowIndex, i, widget.onSeatSelected),
         SizedBox(height: 4),
       ],
     );

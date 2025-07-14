@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/seat_page/seat_page.dart';
-import 'package:flutter_train_app/seat_page/seat_staion.dart';
 
 class SearchButton extends StatelessWidget {
   String departure;

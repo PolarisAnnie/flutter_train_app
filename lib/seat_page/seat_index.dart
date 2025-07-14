@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 
 class SeatRowIndex extends StatelessWidget {
+  List<String> seatRow = ["A", "B", " ", "C", "D"];
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        rowIndex("A"),
-        SizedBox(width: 4),
-        rowIndex("B"),
-        SizedBox(width: 4),
-        rowIndex(" "),
-        SizedBox(width: 4),
-        rowIndex("C"),
-        SizedBox(width: 4),
-        rowIndex("D"),
+        for (String row in seatRow) ...[
+          rowIndex(row),
+          if (row != seatRow.last) SizedBox(width: 4),
+        ],
       ],
     );
   }
@@ -34,45 +30,10 @@ class SeatColIndex extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        colIndex(1),
-        SizedBox(width: 8),
-        colIndex(2),
-        SizedBox(width: 8),
-        colIndex(3),
-        SizedBox(width: 8),
-        colIndex(4),
-        SizedBox(width: 8),
-        colIndex(5),
-        SizedBox(width: 8),
-        colIndex(6),
-        SizedBox(width: 8),
-        colIndex(7),
-        SizedBox(width: 8),
-        colIndex(8),
-        SizedBox(width: 8),
-        colIndex(9),
-        SizedBox(width: 8),
-        colIndex(10),
-        SizedBox(width: 8),
-        colIndex(11),
-        SizedBox(width: 8),
-        colIndex(12),
-        SizedBox(width: 8),
-        colIndex(13),
-        SizedBox(width: 8),
-        colIndex(14),
-        SizedBox(width: 8),
-        colIndex(15),
-        SizedBox(width: 8),
-        colIndex(16),
-        SizedBox(width: 8),
-        colIndex(17),
-        SizedBox(width: 8),
-        colIndex(18),
-        SizedBox(width: 8),
-        colIndex(19),
-        SizedBox(width: 8),
-        colIndex(20),
+        for (int i = 1; i <= 20; i++) ...[
+          colIndex(i),
+          if (i < 20) SizedBox(width: 8),
+        ],
       ],
     );
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_train_app/seat_page/seat_reservation_button.dart';
 import 'package:flutter_train_app/seat_page/seat_label.dart';
 import 'package:flutter_train_app/seat_page/seat_list.dart';
-import 'package:flutter_train_app/seat_page/seat_index.dart';
 import 'package:flutter_train_app/seat_page/seat_staion.dart';
 
 class SeatPage extends StatefulWidget {
