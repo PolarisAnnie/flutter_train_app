@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'seat_index.dart';
 
-class SelectSeatBox extends StatelessWidget {
+class SelectSeatBox extends StatefulWidget {
+  @override
+  State<SelectSeatBox> createState() => _SelectSeatBoxState();
+}
+
+class _SelectSeatBoxState extends State<SelectSeatBox> {
   @override
   Widget build(BuildContext context) {
     return Row(

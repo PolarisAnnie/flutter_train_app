@@ -10,6 +10,9 @@ class SeatPage extends StatefulWidget {
   final String arrival;
   SeatPage(this.departure, this.arrival);
 
+  String? selectedRow;
+  int? selectedCol;
+
   @override
   State<SeatPage> createState() => _SeatPageState();
 }
@@ -25,8 +28,8 @@ class _SeatPageState extends State<SeatPage> {
           children: [
             SeatStation(widget.departure, widget.arrival),
             SeatLabel(),
-            SeatList(),
-            SeatReservationButton(),
+            SeatList(widget.selectedRow, widget.selectedCol),
+            SeatReservationButton(widget.selectedRow, widget.selectedCol),
           ],
         ),
       ),

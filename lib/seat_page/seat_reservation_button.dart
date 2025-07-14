@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_train_app/home_page/home_page.dart';
 
 class SeatReservationButton extends StatelessWidget {
+  String? selectedRow;
+  int? selectedCol;
+  SeatReservationButton(this.selectedRow, this.selectedCol);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,7 +21,7 @@ class SeatReservationButton extends StatelessWidget {
               context: context,
               builder: (context) => CupertinoAlertDialog(
                 title: Text("예매 하시겠습니까?"),
-                content: Text("좌석 : 3-A"),
+                content: Text("좌석 : $selectedCol-$selectedRow"),
                 actions: [
                   CupertinoDialogAction(
                     onPressed: () {
