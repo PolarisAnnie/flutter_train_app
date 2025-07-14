@@ -8,23 +8,27 @@ class StationList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> stationList = [
+      "수서",
+      "동탄",
+      "평택지제",
+      "천안아산",
+      "오송",
+      "대전",
+      "김천구미",
+      "동대구",
+      "경주",
+      "울산",
+      "부산",
+    ];
     return Scaffold(
       appBar: AppBar(title: isDeparture ? Text("출발역") : Text("도착역")),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            stationItem(context, "수서"),
-            stationItem(context, "동탄"),
-            stationItem(context, "평택지제"),
-            stationItem(context, "천안아산"),
-            stationItem(context, "오송"),
-            stationItem(context, "대전"),
-            stationItem(context, "김천구미"),
-            stationItem(context, "동대구"),
-            stationItem(context, "경주"),
-            stationItem(context, "울산"),
-            stationItem(context, "부산"),
+            for (int i = 0; i < stationList.length; i++)
+              stationItem(context, stationList[i]),
           ],
         ),
       ),
