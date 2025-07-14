@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:flutter_train_app/booking_result.dart';
+import 'package:flutter_train_app/booking_result/booking_result.dart';
 
 // 좌석 예매를 위한 버튼 위젯
 class SeatReservationButton extends StatelessWidget {

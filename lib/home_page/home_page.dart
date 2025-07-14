@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_train_app/booking_result.dart';
+import 'package:flutter_train_app/booking_result/booking_result.dart';
 import 'package:flutter_train_app/home_page/search_button.dart';
 import 'package:flutter_train_app/home_page/select_station.dart';
 
