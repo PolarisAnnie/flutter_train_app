@@ -36,7 +36,6 @@ class _SelectSeatBoxState extends State<SelectSeatBox> {
     String rowIndex,
     Function onSeatSelected,
   ) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Column(
       children: [
         for (int i = 1; i <= 20; i++)

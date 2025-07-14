@@ -21,14 +21,22 @@ class StationList extends StatelessWidget {
       "울산",
       "부산",
     ];
+
+    List<String> filteredStation() {
+      if (stationName == "선택") {
+        return stationList;
+      }
+      return stationList.where((station) => station != stationName).toList();
+    }
+
     return Scaffold(
       appBar: AppBar(title: isDeparture ? Text("출발역") : Text("도착역")),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            for (int i = 0; i < stationList.length; i++)
-              stationItem(context, stationList[i]),
+            for (int i = 0; i < filteredStation().length; i++)
+              stationItem(context, filteredStation()[i]),
           ],
         ),
       ),

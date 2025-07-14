@@ -26,14 +26,14 @@ class SelectStation extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          StationSelector(true, departure, onUpdate),
+          StationSelector(true, departure, arrival, onUpdate),
           //세로선 스타일 적용
           Container(
             width: 2,
             height: 50,
             decoration: BoxDecoration(color: Colors.grey[400]),
           ),
-          StationSelector(false, arrival, onUpdate),
+          StationSelector(false, arrival, departure, onUpdate),
         ],
       ),
     );
@@ -41,10 +41,17 @@ class SelectStation extends StatelessWidget {
 }
 
 class StationSelector extends StatelessWidget {
-  StationSelector(this.isDeparture, this.stationName, this.onStationSelected);
   bool isDeparture;
   String stationName;
+  String oppositeName;
   Function(bool, String) onStationSelected;
+
+  StationSelector(
+    this.isDeparture,
+    this.stationName,
+    this.oppositeName,
+    this.onStationSelected,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +66,7 @@ class StationSelector extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return StationList(isDeparture, stationName);
+                  return StationList(isDeparture, oppositeName);
                 },
               ),
             );
