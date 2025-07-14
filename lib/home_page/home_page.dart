@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_train_app/booking_result.dart';
 import 'package:flutter_train_app/home_page/search_button.dart';
 import 'package:flutter_train_app/home_page/select_station.dart';
 
@@ -30,7 +31,24 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       // 배경색 : 다크모드에는 검정, 라이트 모드일 때는 연한 회색
       backgroundColor: isDark ? Colors.black : Colors.grey[200],
-      appBar: AppBar(title: Text("기차 예매")),
+      appBar: AppBar(
+        title: Text("기차 예매"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return BookingResult();
+                  },
+                ),
+              );
+            },
+            icon: Icon(Icons.list_alt),
+          ),
+        ],
+      ),
 
       // 좌우 패딩 20px
       body: Padding(
