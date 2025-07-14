@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'cancel_dialog.dart';
 
 // 예매 내역 리스트
 List<BookingData> bookingList = [];
@@ -42,9 +42,10 @@ class _BookingResultState extends State<BookingResult> {
       appBar: AppBar(title: Text("예매 내역")),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        // 빈 리스트 처리 추가
+
         child: bookingList.isEmpty
-            ? Center(
+            ? // 예매 내역이 없을 때
+              Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -64,7 +65,8 @@ class _BookingResultState extends State<BookingResult> {
                   ],
                 ),
               )
-            : ListView(
+            : // 예매 내역이 있을 때
+              ListView(
                 children: bookingList.map((booking) {
                   return Container(
                     height: 200,
@@ -78,8 +80,11 @@ class _BookingResultState extends State<BookingResult> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(height: 20),
+                        // 예매 완료 일시
                         Text(formatDateTime(booking.reservationTime)),
                         SizedBox(height: 15),
+
+                        // 출발역, 도착역 내역
                         Text(
                           "${booking.departure ?? "출발역 없음"} > ${booking.arrival ?? "도착역 없음"}", // 🔍 null 체크 추가
                           style: TextStyle(
@@ -88,57 +93,32 @@ class _BookingResultState extends State<BookingResult> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+
+                        // 좌석 정보
                         Text(
-                          "좌석 : ${booking.seatCol ?? "?"}-${booking.seatRow ?? "?"}",
+                          "좌석 : ${booking.seatCol}-${booking.seatRow}",
                         ), // 🔍 null 체크 추가
                         SizedBox(height: 15),
+
+                        // 예매 취소 버튼
                         TextButton(
                           onPressed: () {
-                            showCupertinoDialog(
+                            CancelDialog.show(
                               context: context,
-                              builder: (context) => CupertinoAlertDialog(
-                                title: Text("예매 취소하시겠습니까?"),
-                                content: Text(
-                                  "좌석 : ${booking.seatCol ?? "?"}-${booking.seatRow ?? "?"}",
-                                ),
-                                actions: [
-                                  CupertinoDialogAction(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text(
-                                      "돌아가기",
-                                      style: TextStyle(color: Colors.blue),
+                              seatInfo: "${booking.seatCol}-${booking.seatRow}",
+                              onConfirm: () {
+                                setState(() {
+                                  bookingList.remove(booking);
+                                });
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      "${booking.departure} → ${booking.arrival} 예매가 취소되었습니다",
                                     ),
+                                    backgroundColor: Colors.red,
                                   ),
-                                  CupertinoDialogAction(
-                                    onPressed: () {
-                                      setState(() {
-                                        // 예매 내역 취소 선택 시 리스트에서 삭제
-                                        bookingList.remove(booking);
-                                      });
-                                      // 팝업 끄기
-                                      Navigator.pop(context);
-
-                                      // 취소 완료 알림
-                                      ScaffoldMessenger.of(
-                                        context,
-                                      ).showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            "${booking.departure ?? "예매"} → ${booking.arrival ?? ""} 예매가 취소되었습니다", // 🔍 null 체크 추가
-                                          ),
-                                          backgroundColor: Colors.red,
-                                        ),
-                                      );
-                                    },
-                                    child: Text(
-                                      "예매 취소",
-                                      style: TextStyle(color: Colors.red),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                );
+                              },
                             );
                           },
                           child: Text(
