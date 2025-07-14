@@ -6,6 +6,7 @@ class BookingData {
   String? seatCol;
   int? seatRow;
   var ticketUID;
+  DateTime? reservationTime;
 
   BookingData(
     this.departure,
@@ -13,6 +14,7 @@ class BookingData {
     this.seatCol,
     this.seatRow,
     this.ticketUID,
+    this.reservationTime,
   );
 }
 
@@ -23,14 +25,19 @@ class BookingResult extends StatefulWidget {
 
 class _BookingResultState extends State<BookingResult> {
   List<BookingData> bookingList = [
-    BookingData("수서", "동대구", "D", 12, 123456),
-    BookingData("동탄", "경주", "B", 15, 123457),
-    BookingData("천안아산", "동탄", "A", 3, 123458),
+    BookingData("수서", "동대구", "D", 12, 123456, DateTime.now()),
+    BookingData("동탄", "경주", "B", 15, 123457, DateTime.now()),
+    BookingData("천안아산", "동탄", "A", 3, 123458, DateTime.now()),
   ];
 
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
+    String formatDateTime(DateTime? dateTime) {
+      if (dateTime == null) return "날짜없음";
+      return "${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day} ${dateTime.hour}:${dateTime.minute}";
+    }
+
     return Scaffold(
       appBar: AppBar(title: Text("예매 내역")),
       body: Padding(
@@ -50,7 +57,7 @@ class _BookingResultState extends State<BookingResult> {
 
                 children: [
                   SizedBox(height: 20),
-                  Text("예약 완료: 2025년 7월 14일(월) 19시 50분"),
+                  Text(formatDateTime(booking.reservationTime)),
                   SizedBox(height: 15),
                   Text(
                     "${booking.departure} > ${booking.arrival}",
