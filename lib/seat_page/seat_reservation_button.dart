@@ -1,27 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// 좌석 예매를 위한 버튼 위젯
 class SeatReservationButton extends StatelessWidget {
-  String? selectedRow;
-  int? selectedCol;
-  SeatReservationButton(this.selectedRow, this.selectedCol);
+  String? selectedCol;
+  int? selectedRow;
+  SeatReservationButton(this.selectedCol, this.selectedRow);
 
   @override
   Widget build(BuildContext context) {
-    bool isSeatSelected = selectedRow != null && selectedCol != null;
+    // 좌석 선택 여부 확인 (열과 행이 모두 선택되어야 함)
+    bool isSeatSelected = selectedCol != null && selectedRow != null;
     return Padding(
       padding: const EdgeInsets.only(top: 0, bottom: 30, left: 20, right: 20),
       child: SizedBox(
         width: double.infinity,
         height: 50,
         child: ElevatedButton(
+          // 좌석이 선택된 경우에만 버튼 활성화
           onPressed: isSeatSelected
               ? () {
                   showCupertinoDialog(
                     context: context,
                     builder: (context) => CupertinoAlertDialog(
                       title: Text("예매 하시겠습니까?"),
-                      content: Text("좌석 : $selectedRow-$selectedCol"),
+                      content: Text("좌석 : $selectedCol-$selectedRow"),
                       actions: [
                         CupertinoDialogAction(
                           onPressed: () {

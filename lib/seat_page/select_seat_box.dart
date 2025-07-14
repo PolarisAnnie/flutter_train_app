@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'seat_index.dart';
 
+// 좌석 선택을 위한 메인 박스 위젯
 class SelectSeatBox extends StatefulWidget {
-  String? selectedRow;
-  int? selectedCol;
-  Function(String, int) onSeatSelected;
-  SelectSeatBox(this.selectedRow, this.selectedCol, this.onSeatSelected);
+  String? selectedCol;
+  int? selectedRow;
+  Function(String, int) onSeatSelected; // 좌석 선택 시 호출되는 콜백 함수
+  SelectSeatBox(this.selectedCol, this.selectedRow, this.onSeatSelected);
 
   @override
   State<SelectSeatBox> createState() => _SelectSeatBoxState();
@@ -18,20 +19,22 @@ class _SelectSeatBoxState extends State<SelectSeatBox> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        seatRowList(context, "A", widget.onSeatSelected),
+        // A, B열 , 행 번호 인덱스, C,D열
+        seatColList(context, "A", widget.onSeatSelected),
         SizedBox(width: 4),
-        seatRowList(context, "B", widget.onSeatSelected),
+        seatColList(context, "B", widget.onSeatSelected),
         SizedBox(width: 4),
-        SeatColIndex(),
+        SeatRowIndex(),
         SizedBox(width: 4),
-        seatRowList(context, "C", widget.onSeatSelected),
+        seatColList(context, "C", widget.onSeatSelected),
         SizedBox(width: 4),
-        seatRowList(context, "D", widget.onSeatSelected),
+        seatColList(context, "D", widget.onSeatSelected),
       ],
     );
   }
 
-  Column seatRowList(
+  //  1행부터 20행까지 좌석을 세로로 배치
+  Column seatColList(
     BuildContext context,
     String rowIndex,
     Function onSeatSelected,
@@ -45,10 +48,11 @@ class _SelectSeatBoxState extends State<SelectSeatBox> {
     );
   }
 
+  // 개별 좌석을 생성하는 메서드
   Padding seat(
     BuildContext context,
-    String rowIndex,
-    int colNum,
+    String colIndex,
+    int rowNum,
     Function onSeatSelected,
   ) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
@@ -56,14 +60,15 @@ class _SelectSeatBoxState extends State<SelectSeatBox> {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: GestureDetector(
         onTap: () {
-          onSeatSelected(rowIndex, colNum);
+          onSeatSelected(colIndex, rowNum);
         },
         child: Container(
           width: 50,
           height: 50,
           decoration: BoxDecoration(
             color:
-                (widget.selectedRow == rowIndex && widget.selectedCol == colNum)
+                // 좌석이 선택되었을 때 보라, 아닐 때는 다크 모드에 따라 분기 처리
+                (widget.selectedCol == colIndex && widget.selectedRow == rowNum)
                 ? Colors.purple
                 : (isDark ? Colors.white38 : Colors.grey[300]!),
             borderRadius: BorderRadius.circular(8),

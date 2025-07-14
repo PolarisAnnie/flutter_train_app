@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/station_list.dart';
 
+// 출발역과 도착역을 선택할 수 있는 위젯
 class SelectStation extends StatelessWidget {
   String departure;
   String arrival;
+
+  // 역 선택 시 호출되는 콜백 함수
   Function(bool, String) onUpdate;
 
   SelectStation({
@@ -26,13 +29,17 @@ class SelectStation extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          // 출발역 선택기(왼쪽)
           StationSelector(true, departure, arrival, onUpdate),
-          //세로선 스타일 적용
+
+          //구분선 스타일 적용
           Container(
             width: 2,
             height: 50,
             decoration: BoxDecoration(color: Colors.grey[400]),
           ),
+
+          // 도착역 선택기(오른쪽)
           StationSelector(false, arrival, departure, onUpdate),
         ],
       ),
@@ -40,10 +47,11 @@ class SelectStation extends StatelessWidget {
   }
 }
 
+// 개별역(출발역 또는 도착역)을 선택하는 위젯
 class StationSelector extends StatelessWidget {
   bool isDeparture;
   String stationName;
-  String oppositeName;
+  String oppositeName; // 중복된 역 이름 제거를 위한 확인용
   Function(bool, String) onStationSelected;
 
   StationSelector(
@@ -59,7 +67,10 @@ class StationSelector extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        // 역 타입 표시 라벨 (출발역 / 도착역))
         stationStatus(isDeparture),
+
+        // 역 이름 선택 버튼
         TextButton(
           onPressed: () async {
             final result = await Navigator.push<String>(
@@ -71,6 +82,7 @@ class StationSelector extends StatelessWidget {
               ),
             );
 
+            // 역이 선택되었을 때 콜백 함수 호출
             if (result != null) {
               onStationSelected(isDeparture, result);
             }
@@ -87,7 +99,7 @@ class StationSelector extends StatelessWidget {
     );
   }
 
-  // 중복되는 부분 함수화
+  // 출발역 또는 도착역 라벨 위젯
   Text stationStatus(bool isDeparture) {
     return Text(
       isDeparture ? "출발역" : "도착역",
