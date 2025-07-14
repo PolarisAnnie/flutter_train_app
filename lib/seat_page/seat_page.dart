@@ -5,7 +5,16 @@ import 'package:flutter_train_app/seat_page/seat_list.dart';
 import 'package:flutter_train_app/seat_page/seat_index.dart';
 import 'package:flutter_train_app/seat_page/seat_staion.dart';
 
-class SeatPage extends StatelessWidget {
+class SeatPage extends StatefulWidget {
+  final String departure;
+  final String arrival;
+  SeatPage(this.departure, this.arrival);
+
+  @override
+  State<SeatPage> createState() => _SeatPageState();
+}
+
+class _SeatPageState extends State<SeatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +23,7 @@ class SeatPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            SeatStation(),
+            SeatStation(widget.departure, widget.arrival),
             SeatLabel(),
             SeatList(),
             SeatReservationButton(),

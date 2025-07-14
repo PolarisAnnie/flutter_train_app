@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
 class SeatStation extends StatelessWidget {
+  String departure;
+  String arrival;
+  SeatStation(this.departure, this.arrival);
+
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        selectedStation("수서"),
+        selectedStation(departure),
         Icon(Icons.arrow_circle_right_outlined, size: 30),
-        selectedStation("부산"),
+        selectedStation(arrival),
       ],
     );
   }
