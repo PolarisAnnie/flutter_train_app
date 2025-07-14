@@ -41,7 +41,12 @@ class _SeatPageState extends State<SeatPage> {
             // 3. 좌석 배치도 및 선택 영역
             SeatList(selectedCol, selectedRow, onSeatSelected),
             // 4. 예매 하기 버튼
-            SeatReservationButton(selectedCol, selectedRow),
+            SeatReservationButton(
+              selectedCol,
+              selectedRow,
+              widget.departure,
+              widget.arrival,
+            ),
           ],
         ),
       ),

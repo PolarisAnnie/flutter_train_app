@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+// 예매 내역 리스트
+List<BookingData> bookingList = [];
+
+// 예매 내역에 포함되는 속성과 생성자 정의
 class BookingData {
   String? departure;
   String? arrival;
@@ -18,18 +22,13 @@ class BookingData {
   );
 }
 
+// 예매 내역을 보여주는 화면
 class BookingResult extends StatefulWidget {
   @override
   State<BookingResult> createState() => _BookingResultState();
 }
 
 class _BookingResultState extends State<BookingResult> {
-  List<BookingData> bookingList = [
-    BookingData("수서", "동대구", "D", 12, 123456, DateTime.now()),
-    BookingData("동탄", "경주", "B", 15, 123457, DateTime.now()),
-    BookingData("천안아산", "동탄", "A", 3, 123458, DateTime.now()),
-  ];
-
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
